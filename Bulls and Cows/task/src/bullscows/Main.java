@@ -1,37 +1,67 @@
 package bullscows;
-
+import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
-      
-        System.out.println("The secret code is prepared: ****.\n" +
-                "\n" +
-                "Turn 1. Answer:\n" +
-                "1234\n" +
-                "Grade: 1 cow.\n" +
-                "\n" +
-                "Turn 2. Answer:\n" +
-                "5678\n" +
-                "Grade: 1 cow.\n" +
-                "\n" +
-                "Turn 3. Answer:\n" +
-                "9012\n" +
-                "Grade: 1 bull and 1 cow.\n" +
-                "\n" +
-                "Turn 4. Answer:\n" +
-                "9087\n" +
-                "Grade: 1 bull and 1 cow.\n" +
-                "\n" +
-                "Turn 5. Answer:\n" +
-                "1087\n" +
-                "Grade: 1 cow.\n" +
-                "\n" +
-                "Turn 6. Answer:\n" +
-                "9205\n" +
-                "Grade: 3 bulls.\n" +
-                "\n" +
-                "Turn 7. Answer:\n" +
-                "9305\n" +
-                "Grade: 4 bulls.\n" +
-                "Congrats! The secret code is 9305.");
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            int value = scanner.nextInt();
+            int original = 9305;
+            int[] o = convertingToArray(original);
+            int[] a = convertingToArray(value);
+            for (int i = 0; i < 4; i++) {
+                a[i] = value % 10;
+                value = value / 10;
+            }
+            int cows = checkingForCows(o, a);
+            int bulls = checkingForBulls(o, a);
+            cows = cows - bulls;
+            if (cows > 0 && bulls > 0)
+                System.out.print(bulls + " bull(s) and " + cows + " cow(s).");
+            else if (cows > 0)
+                System.out.print(cows + " cow(s).");
+            else if (bulls > 0)
+                System.out.print(bulls + " bull(s).");
+            else
+                System.out.print("None.");
+            System.out.print("The secret code is 9305.");
+            scanner.close();
+        }
+
+        public static int[] convertingToArray(int value) {
+            int[] a = new int[4];
+            for (int i = 0; i < 4; i++) {
+                a[i] = value % 10;
+                value = value / 10;
+            }
+            return a;
+        }
+
+        public static int checkingForCows(int[] o, int[] a) {
+            int count = 0;
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    if (o[i] == a[j])
+                        count++;
+
+            if (count == 0)
+                return 0;
+            else
+                return count;
+        }
+
+        public static int checkingForBulls(int[] o, int[] a) {
+            int count = 0;
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    if (o[i] == a[j] && i == j)
+                        count++;
+            if (count == 0)
+                return 0;
+            else
+                return count;
+        }
     }
-}
+
+
+
+
