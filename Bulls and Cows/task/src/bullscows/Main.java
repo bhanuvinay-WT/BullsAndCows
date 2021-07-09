@@ -1,11 +1,31 @@
 package bullscows;
+
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 public class Main {
 
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
-            int value = scanner.nextInt();
-            int original = 9305;
+    public static void main(String[] args) {
+        long pseudoRandomNumber = System.nanoTime();
+        Scanner scanner = new Scanner(System.in);
+        int value = scanner.nextInt();
+        if(value > 9)
+            System.out.println("Error");
+        else
+        System.out.println("The random secret number is "+randomGenerator(value));
+    }
+    public static String randomGenerator(int length) {
+        List<Integer> randomList = new ArrayList<>(List.of( 2, 3, 4, 5, 6, 7, 8, 9));
+        Collections.shuffle(randomList);
+        StringBuilder result = new StringBuilder();
+        for (var ch : randomList.subList(0, length)) {
+            result.append(ch);
+        }
+        return result.toString();
+    }
+}
+          /*  int original = 9305;
             int[] o = convertingToArray(original);
             int[] a = convertingToArray(value);
             for (int i = 0; i < 4; i++) {
@@ -59,8 +79,8 @@ public class Main {
                 return 0;
             else
                 return count;
-        }
-    }
+        }*/
+
 
 
 
