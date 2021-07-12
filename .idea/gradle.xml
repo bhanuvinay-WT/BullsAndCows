@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Bulls and Cows/task" />
+            <option value="$PROJECT_DIR$/Topics/Floating-point types/Theory" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
