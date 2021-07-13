@@ -3,23 +3,23 @@ package bullscows;
 import java.util.*;
 
 public class Main {
-
     public static int length = 0;
+    public static int symbolsLength = 0;
+    public static String s1 = "0123456789abcdefghijklmnopqrstuvwxyz";
 
     public static void main(String[] args) {
         // long pseudoRandomNumber = System.nanoTime();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, enter the secret code's length:");
         length = scanner.nextInt();
-        if (length > 9) {
-            System.out.println("error");
-            System.out.println("Please, enter the secret code's length:");
-            length = scanner.nextInt();
-        }
-
+        System.out.println("Input the number of possible symbols in the code:");
+        symbolsLength = scanner.nextInt();
         String original = generateRandomDigits();
-        //String original = "5729";
-        System.out.println(original);
+        String x="";
+        for(int i=0;i<length;i++){
+            x=x+"*";
+        }
+        System.out.println("The secret is prepared:"+x+" (0-9,a-"+s1.charAt(symbolsLength-1)+")");
         System.out.println("Okay, let's start a game!");
         int i = 0;
         while (true) {
@@ -56,17 +56,19 @@ public class Main {
 
     }
 
+    //generates random characters from the selected String, with defined length
     public static String generateRandomDigits() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Character> list = new ArrayList<Character>();
         Random random = new Random();
-        String s="";
+
+        String s = "";
         while (true) {
-            int value = random.nextInt(10);
+            char value = s1.charAt(random.nextInt(symbolsLength));
             if (!list.contains(value)) {
                 list.add(value);
-                s=s+value;
+                s = s + value;
             }
-            if(list.size()==length)
+            if (list.size() == length)
                 break;
         }
         return s;
