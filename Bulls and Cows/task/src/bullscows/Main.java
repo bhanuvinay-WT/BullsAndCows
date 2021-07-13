@@ -8,7 +8,6 @@ public class Main {
     public static String s1 = "0123456789abcdefghijklmnopqrstuvwxyz";
 
     public static void main(String[] args) {
-        // long pseudoRandomNumber = System.nanoTime();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, enter the secret code's length:");
         length = scanner.nextInt();
@@ -19,6 +18,7 @@ public class Main {
         for(int i=0;i<length;i++){
             x=x+"*";
         }
+        //informing about the code length and values used in the code.
         System.out.println("The secret is prepared:"+x+" (0-9,a-"+s1.charAt(symbolsLength-1)+")");
         System.out.println("Okay, let's start a game!");
         int i = 0;
@@ -73,7 +73,7 @@ public class Main {
         }
         return s;
     }
-
+//counting no of cows in the given input
     public static int checkingForCows(char[] o, char[] a) {
         int count = 0;
         for (int i = 0; i < o.length; i++)
@@ -88,7 +88,7 @@ public class Main {
         else
             return count;
     }
-
+//counting no of bulls in the given input
     public static int checkingForBulls(char[] o, char[] a) {
         int count = 0;
         for (int i = 0; i < o.length; i++)
